@@ -14,6 +14,7 @@ const AddItems = () => {
       return updatedIngredientList;
     });
   };
+
   return (
     <>
       <h2>AddItems</h2>
@@ -24,7 +25,7 @@ const AddItems = () => {
         id="ingredient-input"
         placeholder="Type the ingredient name here"
       />
-      <Button name={"Add Ingredient"} handleClick={handleAddIngredient} />
+      <Button label={10} handleClick={handleAddIngredient} disabled={false}/>
       <DisplayItems srcList={ingredientList} />
     </>
   );
