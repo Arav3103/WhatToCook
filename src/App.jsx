@@ -1,10 +1,10 @@
 import "./App.css";
-import AddItems from "./components/AddItems/AddItems";
+import RecipeSection from "./components/RecipeSection/RecipeSection";
 
 function App() {
   return (
     <>
-      <AddItems />
+      <RecipeSection />
     </>
   );
 }

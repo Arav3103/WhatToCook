@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const DisplayItems = ({ srcList }) => {
+const DisplayRecipes = ({ srcList }) => {
   return (
     <ul>
       {srcList.map((item, index) => (
@@ -11,12 +11,12 @@ const DisplayItems = ({ srcList }) => {
   );
 };
 
-DisplayItems.propTypes = {
+DisplayRecipes.propTypes = {
   srcList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-DisplayItems.defaultProps = {
+DisplayRecipes.defaultProps = {
   srcList: [],
 };
 
-export default DisplayItems;
+export default DisplayRecipes;
