@@ -1,10 +1,8 @@
 import { openDB } from "idb";
-
-const DB_NAME = "recipe-app-db";
-const DB_VERSION = 1;
+import {DB_NAME, DB_VERSION} from '../constants.js' 
 
 export async function createStoreInDB() {
-  const dbPromise = await openDB("recipeDB", 1, {
+  const dbPromise = await openDB(DB_NAME, DB_VERSION, {
     upgrade(db) {
       if (!db.objectStoreNames.contains("recipe-list")) {
         db.createObjectStore("recipe-list", {
@@ -18,4 +16,4 @@ export async function createStoreInDB() {
   return dbPromise;
 }
 
-createStoreInDB();
+//createStoreInDB();

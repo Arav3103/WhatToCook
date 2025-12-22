@@ -1,4 +1,4 @@
-import { createStoreInDB } from "./IndexedDB";
+import { createStoreInDB } from "./schema";
 
 export const addRecipe = async (recipe) => {
   const db = await createStoreInDB();
