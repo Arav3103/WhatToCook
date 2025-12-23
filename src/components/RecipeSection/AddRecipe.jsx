@@ -3,36 +3,34 @@ import Button from "../Button";
 import AlertPopup from "../AlertPopup";
 import { addRecipe } from "../../database/RecipeStore";
 
-const AddRecipes = ({ setRecipeList }) => {
+const AddRecipe = ({ setRecipeList, recipeList }) => {
   const [showPopup, setShowPopup] = useState(false);
   const inputRef = useRef(null);
   const handleAddRecipe = (e) => {
     e.preventDefault();
-    const newIngredient = inputRef.current.value;
-    if (!newIngredient) return;
-    addRecipe([newIngredient]);
+    const newRecipe = inputRef.current.value;
+    if (!newRecipe) return;
     setRecipeList((prevList) => {
-      const updatedIngredientList = prevList.includes(newIngredient)
-        ? prevList
-        : [...prevList, newIngredient];
-      if (updatedIngredientList.length === prevList.length + 1)
-        setShowPopup(true);
-      console.log(updatedIngredientList);
-      return updatedIngredientList;
+      return prevList.includes(newRecipe) ? prevList : [...prevList, newRecipe];
     });
+    setShowPopup(true);
   };
 
   useEffect(() => {
-    if (showPopup) {
-      const interval = setTimeout(() => {
-        setShowPopup(false);
-      }, 1500);
+    if (recipeList.length <= 0) return;
+    addRecipe(recipeList);
+  }, [recipeList]);
 
-      return () => {
-        clearTimeout(interval);
-      };
-    }
-  }, [showPopup]);
+  useEffect(() => {
+    if (!showPopup) return;
+    const interval = setTimeout(() => {
+      setShowPopup(false);
+    }, 1500);
+
+    return () => {
+      clearTimeout(interval);
+    };
+  });
 
   return (
     <>
@@ -52,4 +50,4 @@ const AddRecipes = ({ setRecipeList }) => {
   );
 };
 
-export default AddRecipes;
+export default AddRecipe;

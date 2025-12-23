@@ -1,7 +1,7 @@
-import { createStoreInDB } from "./schema";
+import { initDB } from "./schema";
 
 export const addRecipe = async (recipe) => {
-  const db = await createStoreInDB();
+  const db = await initDB();
   const tx = db.transaction("recipe-list", "readwrite");
   const store = tx.objectStore("recipe-list");
 
@@ -12,3 +12,7 @@ export const addRecipe = async (recipe) => {
   });
   await tx.done;
 };
+
+// export const deleteRecipe = async (id) {
+
+// }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddRecipes from "./AddRecipes";
+import AddRecipe from "./AddRecipe";
 import DisplayRecipes from "./DisplayRecipes";
 
 const RecipeSection = () => {
@@ -8,10 +8,13 @@ const RecipeSection = () => {
     <main>
       <section id="recipes-home">
         <aside id="add-recipes">
-          <AddRecipes setRecipeList={setRecipeList} />
+          <AddRecipe setRecipeList={setRecipeList} recipeList={recipeList} />
         </aside>
         <section id="display-recipes">
-          <DisplayRecipes srcList={recipeList} />
+          <DisplayRecipes
+            setRecipeList={setRecipeList}
+            recipeList={recipeList}
+          />
         </section>
       </section>
     </main>
