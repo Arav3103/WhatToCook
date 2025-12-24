@@ -1,0 +1,17 @@
+.modal-overlay {
+  position: fixed;
+  background-color: black;
+  display: flex;
+  opacity: 0.9;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  min-width: 300px;
+}

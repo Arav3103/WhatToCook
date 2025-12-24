@@ -3,10 +3,10 @@ import Button from "../Button";
 import AlertPopup from "../AlertPopup";
 import { addRecipe } from "../../database/RecipeStore";
 
-const AddRecipe = ({ setRecipeList, recipeList }) => {
+const CreateRecipe = ({ setRecipeList, recipeList }) => {
   const [showPopup, setShowPopup] = useState(false);
   const inputRef = useRef(null);
-  const handleAddRecipe = (e) => {
+  const handleCreateRecipe = (e) => {
     e.preventDefault();
     const newRecipe = inputRef.current.value;
     if (!newRecipe) return;
@@ -14,10 +14,12 @@ const AddRecipe = ({ setRecipeList, recipeList }) => {
       return prevList.includes(newRecipe) ? prevList : [...prevList, newRecipe];
     });
     setShowPopup(true);
+    inputRef.current.value = "";
   };
 
   useEffect(() => {
     if (recipeList.length <= 0) return;
+
     addRecipe(recipeList);
   }, [recipeList]);
 
@@ -34,7 +36,8 @@ const AddRecipe = ({ setRecipeList, recipeList }) => {
 
   return (
     <>
-      <form onSubmit={handleAddRecipe}>
+      <h3>{showPopup && <AlertPopup />}</h3>
+      <form onSubmit={handleCreateRecipe}>
         <h2>Add Recipes</h2>
         <input
           ref={inputRef}
@@ -45,9 +48,8 @@ const AddRecipe = ({ setRecipeList, recipeList }) => {
         />
         <Button type={"submit"} label={"Add Recipe"} disabled={false} />
       </form>
-      {showPopup && <AlertPopup />}
     </>
   );
 };
 
-export default AddRecipe;
+export default CreateRecipe;

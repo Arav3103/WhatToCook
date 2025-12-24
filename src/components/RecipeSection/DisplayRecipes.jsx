@@ -1,22 +1,32 @@
-import React from "react";
 import PropTypes from "prop-types";
+import DeleteRecipe from "./DeleteRecipe";
+import ReadRecipe from "./ReadRecipe";
+import { useState } from "react";
 
 const DisplayRecipes = ({ recipeList, setRecipeList }) => {
-  const handleDeleteRecipe = (item) => {
-    const updatedList = recipeList.filter((recipe) => recipe !== item);
-    setRecipeList(updatedList);
-  };
+  const [showModal, setShowModal] = useState(false);
   return (
-    <ul>
-      {recipeList.map((item, index) => (
-        <li key={index}>
-          {item}
-          <span>
-            <button onClick={() => handleDeleteRecipe(item)}>Delete</button>
-          </span>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {recipeList.map((item, index) => (
+          <li key={index}>
+            {item}{" "}
+            <DeleteRecipe
+              recipeList={recipeList}
+              setRecipeList={setRecipeList}
+              item={item}
+            />
+            {showModal && (
+              <ReadRecipe
+                recipeList={recipeList}
+                item={item}
+                onClose={() => setShowModal(false)}
+              />
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 
