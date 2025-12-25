@@ -11,7 +11,16 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
     const newRecipe = inputRef.current.value;
     if (!newRecipe) return;
     setRecipeList((prevList) => {
-      return prevList.includes(newRecipe) ? prevList : [...prevList, newRecipe];
+      return prevList.includes(newRecipe)
+        ? prevList
+        : [
+            ...prevList,
+            {
+              id: recipeList.length + 1,
+              name: newRecipe,
+              createdDate: Date.now(),
+            },
+          ];
     });
     setShowPopup(true);
     inputRef.current.value = "";

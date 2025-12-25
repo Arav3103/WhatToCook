@@ -10,18 +10,20 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
       <ul>
         {recipeList.map((item, index) => (
           <li key={index}>
-            {item}{" "}
+            {item.name}{" "}
             <DeleteRecipe
               recipeList={recipeList}
               setRecipeList={setRecipeList}
               item={item}
             />
-            {showModal && (
+            {showModal ? (
               <ReadRecipe
                 recipeList={recipeList}
                 item={item}
                 onClose={() => setShowModal(false)}
               />
+            ) : (
+              <button onClick={() => setShowModal(true)}>View</button>
             )}
           </li>
         ))}
