@@ -9,6 +9,7 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
   const handleCreateRecipe = (e) => {
     e.preventDefault();
     const newRecipe = inputRef.current.value;
+    const createdDateTime = new Date(Date.now());
     if (!newRecipe) return;
     setRecipeList((prevList) => {
       return prevList.includes(newRecipe)
@@ -18,7 +19,8 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
             {
               id: recipeList.length + 1,
               name: newRecipe,
-              createdDate: Date.now(),
+              createdDate: createdDateTime.toLocaleDateString(),
+              createdTime: createdDateTime.toLocaleTimeString(),
             },
           ];
     });

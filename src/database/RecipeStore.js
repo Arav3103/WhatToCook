@@ -5,9 +5,12 @@ export const addRecipe = async (recipe) => {
   const tx = db.transaction("recipe-list", "readwrite");
   const store = tx.objectStore("recipe-list");
 
-  recipe.forEach((id) => {
+  recipe.forEach((item) => {
     store.put({
-      name: id,
+      id: item.id,
+      name: item.name,
+      createdDate: item.createdDate,
+      createdTime: item.createdTime,
     });
   });
   await tx.done;
