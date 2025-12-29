@@ -4,7 +4,7 @@ import AlertPopup from "../AlertPopup";
 import { addRecipe } from "../../database/RecipeStore";
 
 const CreateRecipe = ({ setRecipeList, recipeList }) => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const inputRef = useRef(null);
   const handleCreateRecipe = (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
             },
           ];
     });
-    setShowPopup(true);
+    setShowAlert(true);
     inputRef.current.value = "";
   };
 
@@ -35,9 +35,9 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
   }, [recipeList]);
 
   useEffect(() => {
-    if (!showPopup) return;
+    if (!showAlert) return;
     const interval = setTimeout(() => {
-      setShowPopup(false);
+      setShowAlert(false);
     }, 1500);
 
     return () => {
@@ -47,7 +47,7 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
 
   return (
     <>
-      <h3>{showPopup && <AlertPopup />}</h3>
+      <h3>{showAlert && <AlertPopup />}</h3>
       <form onSubmit={handleCreateRecipe}>
         <h2>Add Recipes</h2>
         <input

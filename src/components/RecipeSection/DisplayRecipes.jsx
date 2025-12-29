@@ -5,12 +5,26 @@ import { useState } from "react";
 
 const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [showModal, setShowModal] = useState(false);
+  const [searchItem, setSearchItem] = useState("");
+  const filteredRecipeList = recipeList.filter((recipe) =>
+    recipe.name.toLowerCase().includes(searchItem)
+  );
   return (
     <>
+      <form>
+        <input
+          type="text"
+          value={searchItem}
+          name="recipe-search"
+          id="recipe-search"
+          placeholder="Find your recipe here"
+          onChange={(e) => setSearchItem(e.target.value)}
+        />
+      </form>
       <ul>
-        {recipeList.map((item, index) => (
+        {filteredRecipeList.map((item, index) => (
           <li key={index}>
-            {item.name}{" "}
+            {`Recipe Name : ${item.name} `}
             <DeleteRecipe
               recipeList={recipeList}
               setRecipeList={setRecipeList}
