@@ -10,6 +10,10 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
     e.preventDefault();
     const newRecipe = inputRef.current.value;
     const createdDateTime = new Date(Date.now());
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+
     if (!newRecipe) return;
     setRecipeList((prevList) => {
       return prevList.includes(newRecipe)
@@ -18,7 +22,7 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
             ...prevList,
             {
               id: recipeList.length + 1,
-              name: newRecipe,
+              recipeName: newRecipe,
               createdDate: createdDateTime.toLocaleDateString(),
               createdTime: createdDateTime.toLocaleTimeString(),
             },
@@ -49,14 +53,68 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
     <>
       <h3>{showAlert && <AlertPopup />}</h3>
       <form onSubmit={handleCreateRecipe}>
-        <h2>Add Recipes</h2>
-        <input
-          ref={inputRef}
-          type="text"
-          name="recipe-input"
-          id="recipe-input"
-          placeholder="Type the recipe name here"
-        />
+        <h2>Add Recipe</h2>
+        <fieldset>
+          <label htmlFor="recipe-name">Recipe Name</label>
+          <input
+            ref={inputRef}
+            type="text"
+            name="recipe-name"
+            id="recipe-name"
+            placeholder="Type the recipe name here"
+          />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="cuisine">Cuisine Type</label>
+          <input
+            type="radio"
+            name="cuisine"
+            id="radio-south-indian"
+            value={"South Indian"}
+          />
+          South Indian
+          <input
+            type="radio"
+            name="cuisine"
+            id="radio-north-indian"
+            value={"North Indian"}
+          />
+          North Indian
+        </fieldset>
+        <fieldset>
+          <label htmlFor="category">Category</label>
+          <input
+            type="radio"
+            name="category"
+            id="radio-breakfast"
+            value={"Breakfast"}
+          />
+          Breakfast
+          <input
+            type="radio"
+            name="category"
+            id="radio-lunch"
+            value={"Lunch"}
+          />
+          Lunch
+          <input
+            type="radio"
+            name="category"
+            id="radio-dinner"
+            value={"Dinner"}
+          />
+          Dinner
+        </fieldset>
+        <fieldset>
+          <label htmlFor="recipe-type">Recipe Type</label>
+          <select name="recipe-type" id="recipe-type" defaultValue="">
+            <option value="" disabled>
+              Select Type
+            </option>
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
+          </select>
+        </fieldset>
         <Button type={"submit"} label={"Add Recipe"} disabled={false} />
       </form>
     </>
