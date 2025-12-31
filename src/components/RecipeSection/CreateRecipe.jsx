@@ -8,23 +8,26 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
   const inputRef = useRef(null);
   const handleCreateRecipe = (e) => {
     e.preventDefault();
-    const newRecipe = inputRef.current.value;
+    // const newRecipe = inputRef.current.value;
     const createdDateTime = new Date(Date.now());
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
     console.log(data);
 
-    if (!newRecipe) return;
+    if (!data.recipeName) return;
     setRecipeList((prevList) => {
-      return prevList.includes(newRecipe)
+      return prevList.includes(data.recipeName)
         ? prevList
         : [
             ...prevList,
             {
               id: recipeList.length + 1,
-              recipeName: newRecipe,
+              recipeName: data.recipeName,
               createdDate: createdDateTime.toLocaleDateString(),
               createdTime: createdDateTime.toLocaleTimeString(),
+              cuisine: data.cuisine,
+              category: data.category,
+              recipeType: data.recipeType,
             },
           ];
     });
@@ -55,12 +58,12 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
       <form onSubmit={handleCreateRecipe}>
         <h2>Add Recipe</h2>
         <fieldset>
-          <label htmlFor="recipe-name">Recipe Name</label>
+          <label htmlFor="recipeName">Recipe Name</label>
           <input
             ref={inputRef}
             type="text"
-            name="recipe-name"
-            id="recipe-name"
+            name="recipeName"
+            id="recipeName"
             placeholder="Type the recipe name here"
           />
         </fieldset>
@@ -106,8 +109,8 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
           Dinner
         </fieldset>
         <fieldset>
-          <label htmlFor="recipe-type">Recipe Type</label>
-          <select name="recipe-type" id="recipe-type" defaultValue="">
+          <label htmlFor="recipeType">Recipe Type</label>
+          <select name="recipeType" id="recipeType" defaultValue="">
             <option value="" disabled>
               Select Type
             </option>

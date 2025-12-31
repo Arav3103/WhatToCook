@@ -7,7 +7,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [showModal, setShowModal] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const filteredRecipeList = recipeList.filter((recipe) =>
-    recipe.name.toLowerCase().includes(searchItem)
+    recipe.recipeName.toLowerCase().includes(searchItem.toLowerCase())
   );
   return (
     <>
@@ -20,11 +20,14 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           placeholder="Find your recipe here"
           onChange={(e) => setSearchItem(e.target.value)}
         />
+        {searchItem.length > 0 && (
+          <button type="button" title="clearSearchInput" onClick={() => setSearchItem("")}>X</button>
+        )}
       </form>
       <ul>
         {filteredRecipeList.map((item, index) => (
           <li key={index}>
-            {`Recipe Name : ${item.name} `}
+            {`Recipe Name : ${item.recipeName} | Cuisine Type : ${item.cuisine} | Recipe Type : ${item.recipeType} | Category : ${item.category}`}
             <DeleteRecipe
               recipeList={recipeList}
               setRecipeList={setRecipeList}
