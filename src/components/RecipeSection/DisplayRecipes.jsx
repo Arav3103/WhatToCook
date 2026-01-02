@@ -27,7 +27,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
       <ul>
         {filteredRecipeList.map((item, index) => (
           <li key={index}>
-            {`Recipe Name : ${item.recipeName} | Cuisine Type : ${item.cuisine} | Recipe Type : ${item.recipeType} | Category : ${item.category}`}
+            {`Recipe Name : ${item.recipeName} | Cuisine : ${item.cuisine} | Recipe Type : ${item.recipeType} | Category : ${item.category}`}
             <DeleteRecipe
               recipeList={recipeList}
               setRecipeList={setRecipeList}

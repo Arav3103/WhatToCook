@@ -6,6 +6,9 @@ import { addRecipe } from "../../database/RecipeStore";
 const CreateRecipe = ({ setRecipeList, recipeList }) => {
   const [showAlert, setShowAlert] = useState(false);
   const inputRef = useRef(null);
+  const initQuickFilters = ()=>{
+
+  };
   const handleCreateRecipe = (e) => {
     e.preventDefault();
     // const newRecipe = inputRef.current.value;
@@ -39,6 +42,7 @@ const CreateRecipe = ({ setRecipeList, recipeList }) => {
     if (recipeList.length <= 0) return;
 
     addRecipe(recipeList);
+    initQuickFilters();
   }, [recipeList]);
 
   useEffect(() => {
