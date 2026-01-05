@@ -6,6 +6,7 @@ import { DUMMY_RECIPE_DATA } from "../../database/dummyData";
 
 const RecipeSection = () => {
   const [recipeList, setRecipeList] = useState(DUMMY_RECIPE_DATA);
+  
   return (
     <main>
       <section id="recipes-home">
@@ -20,7 +21,7 @@ const RecipeSection = () => {
                 />
               </section>
               <section id="quick-filters">
-                <QuickFilters />
+                <QuickFilters recipeList={recipeList} />
               </section>
             </>
           ) : (
