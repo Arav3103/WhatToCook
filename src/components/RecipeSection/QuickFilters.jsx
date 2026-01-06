@@ -1,15 +1,13 @@
 import React from "react";
 // import { quickFilters } from '../../constants';
 
-const QuickFilters = ({ recipeList }) => {
+const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
   const quickFilters = [
     ...new Set(
       recipeList.flatMap((r) => [r.category, r.cuisine, r.recipeType])
     ),
   ];
-  const handleQuickFilter = (e) => {
-    console.log(e.currentTarget.name);
-  };
+
   return (
     <>
       <h2>Quick Filters</h2>
@@ -19,7 +17,7 @@ const QuickFilters = ({ recipeList }) => {
             <button
               type="button"
               name={filterKey}
-              onClick={(e) => handleQuickFilter(e)}
+              onClick={() => handleSelectQuickFilter(filterKey)}
             >
               {filterKey}
             </button>

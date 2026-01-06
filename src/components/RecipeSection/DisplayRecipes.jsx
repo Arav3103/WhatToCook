@@ -2,15 +2,32 @@ import PropTypes from "prop-types";
 import DeleteRecipe from "./DeleteRecipe";
 import ReadRecipe from "./ReadRecipe";
 import { useState } from "react";
+import QuickFilters from "./QuickFilters";
 
 const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [showModal, setShowModal] = useState(false);
   const [searchItem, setSearchItem] = useState("");
+  const [quickFilterItem, setQuickFilterItem] = useState("");
+  const handleSelectQuickFilter = (filterValue) => {
+    setQuickFilterItem(filterValue);
+  };
   const filteredRecipeList = recipeList.filter((recipe) =>
-    recipe.recipeName.toLowerCase().includes(searchItem.toLowerCase())
+  {
+    const matchedSearch = recipe.recipeName
+      .toLowerCase()
+      .includes(searchItem.toLowerCase());
+    const matchedFilterList = quickFilterItem == '' || recipe.category === quickFilterItem || recipe.cuisine === quickFilterItem || recipe.recipeType === quickFilterItem;
+    return matchedSearch && matchedFilterList;
+  }
   );
   return (
     <>
+      <section id="quick-filters">
+        <QuickFilters
+          recipeList={recipeList}
+          handleSelectQuickFilter={handleSelectQuickFilter}
+        />
+      </section>
       <form>
         <input
           type="text"
@@ -21,7 +38,13 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           onChange={(e) => setSearchItem(e.target.value)}
         />
         {searchItem.length > 0 && (
-          <button type="button" title="clearSearchInput" onClick={() => setSearchItem("")}>X</button>
+          <button
+            type="button"
+            title="clearSearchInput"
+            onClick={() => setSearchItem("")}
+          >
+            X
+          </button>
         )}
       </form>
       <ul>

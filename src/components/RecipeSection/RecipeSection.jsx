@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CreateRecipe from "./CreateRecipe";
 import DisplayRecipes from "./DisplayRecipes";
-import QuickFilters from "./QuickFilters";
 import { DUMMY_RECIPE_DATA } from "../../database/dummyData";
 
 const RecipeSection = () => {
@@ -19,9 +18,6 @@ const RecipeSection = () => {
                   setRecipeList={setRecipeList}
                   recipeList={recipeList}
                 />
-              </section>
-              <section id="quick-filters">
-                <QuickFilters recipeList={recipeList} />
               </section>
             </>
           ) : (
