@@ -8,18 +8,21 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [showModal, setShowModal] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const [quickFilterItem, setQuickFilterItem] = useState("");
+  const [selectedRecipe, setSelectedRecipe] = useState("");
   const handleSelectQuickFilter = (filterValue) => {
     setQuickFilterItem(filterValue);
   };
-  const filteredRecipeList = recipeList.filter((recipe) =>
-  {
+  const filteredRecipeList = recipeList.filter((recipe) => {
     const matchedSearch = recipe.recipeName
       .toLowerCase()
       .includes(searchItem.toLowerCase());
-    const matchedFilterList = quickFilterItem == '' || recipe.category === quickFilterItem || recipe.cuisine === quickFilterItem || recipe.recipeType === quickFilterItem;
+    const matchedFilterList =
+      quickFilterItem == "" ||
+      recipe.category === quickFilterItem ||
+      recipe.cuisine === quickFilterItem ||
+      recipe.recipeType === quickFilterItem;
     return matchedSearch && matchedFilterList;
-  }
-  );
+  });
   return (
     <>
       <section id="quick-filters">
@@ -48,26 +51,32 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
         )}
       </form>
       <ul>
-        {filteredRecipeList.map((item, index) => (
-          <li key={index}>
+        {filteredRecipeList.map((item) => (
+          <li key={item.recipeID}>
             {`Recipe Name : ${item.recipeName} | Cuisine : ${item.cuisine} | Recipe Type : ${item.recipeType} | Category : ${item.category}`}
             <DeleteRecipe
               recipeList={recipeList}
               setRecipeList={setRecipeList}
               item={item}
             />
-            {showModal ? (
-              <ReadRecipe
-                recipeList={recipeList}
-                item={item}
-                onClose={() => setShowModal(false)}
-              />
-            ) : (
-              <button onClick={() => setShowModal(true)}>View</button>
-            )}
+            <button
+              onClick={() => {
+                setShowModal(true);
+                setSelectedRecipe(item.recipeID);
+              }}
+            >
+              View
+            </button>
           </li>
         ))}
       </ul>
+      {showModal && selectedRecipe && (
+        <ReadRecipe
+          recipeList={recipeList}
+          selectedRecipe={selectedRecipe}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </>
   );
 };

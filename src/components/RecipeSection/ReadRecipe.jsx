@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import "./styles.css";
 
-const ReadRecipe = ({ recipeList, onClose, item }) => {
+const ReadRecipe = ({ recipeList, onClose, selectedRecipe }) => {
   const portalRoot = document.getElementById("portal-root");
   if (!portalRoot) return;
   return createPortal(
@@ -9,12 +9,14 @@ const ReadRecipe = ({ recipeList, onClose, item }) => {
       <div className="modal-overlay">
         <ul>
           {recipeList
-            .filter((recipe) => recipe.id === item.id)
+            .filter((recipe) => recipe.recipeID === selectedRecipe)
             .map((recipe) => {
-              console.log(recipe);
               return (
-                <li className="color-white" key={recipe.id}>
-                  {recipe.name}
+                <li className="color-white" key={recipe.recipeID}>
+                  <p>Name of the Recipe : {recipe.recipeName}</p>
+                  <p>Category : {recipe.category}</p>
+                  <p>Cuisine : {recipe.cuisine}</p>
+                  <p> Recipe Type : {recipe.recipeType}</p>
                 </li>
               );
             })}
