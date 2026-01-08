@@ -3,9 +3,11 @@ import DeleteRecipe from "./DeleteRecipe";
 import ReadRecipe from "./ReadRecipe";
 import { useState } from "react";
 import QuickFilters from "./QuickFilters";
+import AddRecipe from "./AddRecipe";
 
 const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const [quickFilterItem, setQuickFilterItem] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState("");
@@ -25,12 +27,6 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   });
   return (
     <>
-      <section id="quick-filters">
-        <QuickFilters
-          recipeList={recipeList}
-          handleSelectQuickFilter={handleSelectQuickFilter}
-        />
-      </section>
       <form>
         <input
           type="text"
@@ -49,7 +45,20 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
             X
           </button>
         )}
+        <button
+          type="button"
+          name="openAddRecipeModal"
+          onClick={() => setShowAddRecipeModal(true)}
+        >
+          +{" "}
+        </button>
       </form>
+      <section id="quick-filters">
+        <QuickFilters
+          recipeList={recipeList}
+          handleSelectQuickFilter={handleSelectQuickFilter}
+        />
+      </section>
       <ul>
         {filteredRecipeList.map((item) => (
           <li key={item.recipeID}>
@@ -75,6 +84,13 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           recipeList={recipeList}
           selectedRecipe={selectedRecipe}
           onClose={() => setShowModal(false)}
+        />
+      )}
+      {showAddRecipeModal && (
+        <AddRecipe
+          setRecipeList={setRecipeList}
+          recipeList={recipeList}
+          onClose={() => setShowAddRecipeModal(false)}
         />
       )}
     </>

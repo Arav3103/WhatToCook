@@ -6,13 +6,13 @@ const ReadRecipe = ({ recipeList, onClose, selectedRecipe }) => {
   if (!portalRoot) return;
   return createPortal(
     <div className="modal-overlay">
-      <div className="modal-overlay">
+      <div className="modal">
         <ul>
           {recipeList
             .filter((recipe) => recipe.recipeID === selectedRecipe)
             .map((recipe) => {
               return (
-                <li className="color-white" key={recipe.recipeID}>
+                <li key={recipe.recipeID}>
                   <p>Name of the Recipe : {recipe.recipeName}</p>
                   <p>Category : {recipe.category}</p>
                   <p>Cuisine : {recipe.cuisine}</p>

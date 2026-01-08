@@ -10,7 +10,6 @@ const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
 
   return (
     <>
-      <h2>Quick Filters</h2>
       <div>
         {quickFilters.map((filterKey, index) => (
           <span key={index}>
