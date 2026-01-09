@@ -1,5 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
+import Button from "../Button";
 
 const DeleteRecipe = ({
   recipeList,
@@ -20,8 +21,10 @@ const DeleteRecipe = ({
     <div className="modal-overlay">
       <div className="modal">
         <p>Do you want to delete the recipe?</p>
-        <button onClick={handleDeleteRecipe}>Delete</button>
-        <button onClick={closeModal}>Cancel</button>
+        <Button onClick={handleDeleteRecipe} label={"Delete"}>
+          Delete
+        </Button>
+        <Button onClick={closeModal} label={"Close"}></Button>
       </div>
     </div>,
     portalRoot

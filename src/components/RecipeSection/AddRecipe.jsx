@@ -125,11 +125,21 @@ const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
               <option value="Non-Veg">Non-Veg</option>
             </select>
           </fieldset>
-          <Button type={"submit"} label={"Add Recipe"} disabled={false} />
+          <Button
+            type={"submit"}
+            label={"Add Recipe"}
+            disabled={false}
+            name="addRecipeBtn"
+          />
         </form>
-        <button name="closeAddRecipeModal" onClick={onClose}>Close</button>
+        <Button
+          name="closeAddRecipeModalBtn"
+          label={"Close"}
+          onClick={onClose}
+        />
       </div>
-    </div>, portalRoot
+    </div>,
+    portalRoot
   );
 };
 

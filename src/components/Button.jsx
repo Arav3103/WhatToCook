@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ label, onClick, disabled, type }) => {
+const Button = ({ label, onClick, disabled, type, name }) => {
   return (
     <>
-      <button type={type} label={label} onClick={onClick} disabled={disabled}>
+      <button
+        name={name}
+        type={type}
+        id={name}
+        label={label}
+        onClick={onClick}
+        disabled={disabled}
+      >
         {label}
       </button>
     </>
