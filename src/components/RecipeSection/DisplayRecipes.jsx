@@ -4,10 +4,12 @@ import ReadRecipe from "./ReadRecipe";
 import { useState } from "react";
 import QuickFilters from "./QuickFilters";
 import AddRecipe from "./AddRecipe";
+import Button from "../Button";
 
 const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [showModal, setShowModal] = useState(false);
   const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
+  const [showDeleteRecipeModal, setDeleteRecipeModal] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const [quickFilterItem, setQuickFilterItem] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState("");
@@ -63,19 +65,23 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
         {filteredRecipeList.map((item) => (
           <li key={item.recipeID}>
             {`Recipe Name : ${item.recipeName} | Cuisine : ${item.cuisine} | Recipe Type : ${item.recipeType} | Category : ${item.category}`}
-            <DeleteRecipe
-              recipeList={recipeList}
-              setRecipeList={setRecipeList}
-              item={item}
+
+            <Button
+              onClick={() => {
+                setDeleteRecipeModal(true);
+                setSelectedRecipe(item.recipeID);
+              }}
+              label="Delete"
+              type="Delete"
             />
-            <button
+            <Button
               onClick={() => {
                 setShowModal(true);
                 setSelectedRecipe(item.recipeID);
               }}
-            >
-              View
-            </button>
+              label="View"
+              type="View"
+            />
           </li>
         ))}
       </ul>
@@ -91,6 +97,14 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           setRecipeList={setRecipeList}
           recipeList={recipeList}
           onClose={() => setShowAddRecipeModal(false)}
+        />
+      )}
+      {showDeleteRecipeModal && (
+        <DeleteRecipe
+          recipeList={recipeList}
+          setRecipeList={setRecipeList}
+          selectedRecipe={selectedRecipe}
+          onClose={() => setDeleteRecipeModal(false)}
         />
       )}
     </>
