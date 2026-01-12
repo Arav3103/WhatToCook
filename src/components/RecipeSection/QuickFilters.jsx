@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button";
 // import { quickFilters } from '../../constants';
 
 const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
@@ -6,6 +7,7 @@ const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
     ...new Set(
       recipeList.flatMap((r) => [r.category, r.cuisine, r.recipeType])
     ),
+    "All Recipes",
   ];
 
   return (
@@ -13,13 +15,12 @@ const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
       <div>
         {quickFilters.map((filterKey, index) => (
           <span key={index}>
-            <button
+            <Button
+              onClick={() => handleSelectQuickFilter(filterKey)}
+              label={filterKey}
               type="button"
               name={filterKey}
-              onClick={() => handleSelectQuickFilter(filterKey)}
-            >
-              {filterKey}
-            </button>
+            />
           </span>
         ))}
       </div>

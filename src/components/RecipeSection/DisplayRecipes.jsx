@@ -17,6 +17,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
     setQuickFilterItem(filterValue);
   };
   const filteredRecipeList = recipeList.filter((recipe) => {
+    if (quickFilterItem === "All Recipes") return recipeList;
     const matchedSearch = recipe.recipeName
       .toLowerCase()
       .includes(searchItem.toLowerCase());
@@ -39,21 +40,19 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           onChange={(e) => setSearchItem(e.target.value)}
         />
         {searchItem.length > 0 && (
-          <button
+          <Button
             type="button"
-            title="clearSearchInput"
             onClick={() => setSearchItem("")}
-          >
-            X
-          </button>
+            label={"X"}
+            name={"clearSearchInput"}
+          />
         )}
-        <button
+        <Button
           type="button"
-          name="openAddRecipeModal"
           onClick={() => setShowAddRecipeModal(true)}
-        >
-          +{" "}
-        </button>
+          label={"+"}
+          name={"openAddRecipeModal"}
+        />
       </form>
       <section id="quick-filters">
         <QuickFilters
@@ -62,9 +61,13 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
         />
       </section>
       <ul>
-        {filteredRecipeList.map((item) => (
+        {filteredRecipeList.map((item, index) => (
           <li key={item.recipeID}>
-            {`Recipe Name : ${item.recipeName} | Cuisine : ${item.cuisine} | Recipe Type : ${item.recipeType} | Category : ${item.category}`}
+            {`${index + 1 + "   "}Recipe Name : ${
+              item.recipeName
+            } | Cuisine : ${item.cuisine} | Recipe Type : ${
+              item.recipeType
+            } | Category : ${item.category}`}
 
             <Button
               onClick={() => {

@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import "./styles.css";
+import Button from "../Button";
 
 const ReadRecipe = ({ recipeList, onClose, selectedRecipe }) => {
   const portalRoot = document.getElementById("portal-root");
@@ -21,9 +22,7 @@ const ReadRecipe = ({ recipeList, onClose, selectedRecipe }) => {
               );
             })}
         </ul>
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
+        <Button onClick={onClose} label={"Close"} />
       </div>
     </div>,
     portalRoot
