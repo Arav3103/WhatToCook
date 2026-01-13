@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import DeleteRecipe from "./DeleteRecipe";
 import ReadRecipe from "./ReadRecipe";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuickFilters from "./QuickFilters";
 import AddRecipe from "./AddRecipe";
 import Button from "../Button";
@@ -13,6 +13,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [searchItem, setSearchItem] = useState("");
   const [quickFilterItem, setQuickFilterItem] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState("");
+  const [sortType, setSortType] = useState("a-z");
   const handleSelectQuickFilter = (filterValue) => {
     setQuickFilterItem(filterValue);
   };
@@ -28,6 +29,18 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
       recipe.recipeType === quickFilterItem;
     return matchedSearch && matchedFilterList;
   });
+  let sortedRecipeList =
+    sortType === "a-z"
+      ? [...filteredRecipeList].sort((a, b) =>
+          a.recipeName.localeCompare(b.recipeName)
+        )
+      : [...filteredRecipeList].sort((a, b) =>
+          b.recipeName.localeCompare(a.recipeName)
+        );
+
+  const handleSelectSortOrder = (e) => {
+    console.log(e);
+  };
   return (
     <>
       <form>
@@ -59,9 +72,21 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           recipeList={recipeList}
           handleSelectQuickFilter={handleSelectQuickFilter}
         />
+        <span>
+          <Button
+            label={"A-Z"}
+            onClick={(e) => handleSelectSortOrder(e)}
+          />
+        </span>
+        <span>
+          <Button
+            label={"Z-A"}
+            onClick={(e) => handleSelectSortOrder(e)}
+          />
+        </span>
       </section>
       <ul>
-        {filteredRecipeList.map((item, index) => (
+        {sortedRecipeList.map((item, index) => (
           <li key={item.recipeID}>
             {`${index + 1 + "   "}Recipe Name : ${
               item.recipeName
