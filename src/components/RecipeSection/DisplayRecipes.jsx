@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import DeleteRecipe from "./DeleteRecipe";
 import ReadRecipe from "./ReadRecipe";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import QuickFilters from "./QuickFilters";
 import AddRecipe from "./AddRecipe";
 import Button from "../Button";
@@ -13,7 +13,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
   const [searchItem, setSearchItem] = useState("");
   const [quickFilterItem, setQuickFilterItem] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState("");
-  const [sortType, setSortType] = useState("a-z");
+  const [sortType, setSortType] = useState("A-Z");
   const handleSelectQuickFilter = (filterValue) => {
     setQuickFilterItem(filterValue);
   };
@@ -30,7 +30,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
     return matchedSearch && matchedFilterList;
   });
   let sortedRecipeList =
-    sortType === "a-z"
+    sortType === "A-Z"
       ? [...filteredRecipeList].sort((a, b) =>
           a.recipeName.localeCompare(b.recipeName)
         )
@@ -39,7 +39,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
         );
 
   const handleSelectSortOrder = (e) => {
-    console.log(e);
+    setSortType(e.currentTarget.id);
   };
   return (
     <>

@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ label, onClick, disabled, type, name }) => {
+const Button = ({ label, onClick, disabled, type }) => {
   return (
     <>
       <button
-        name={name}
         type={type}
-        id={name}
+        id={label}
         label={label}
         onClick={onClick}
         disabled={disabled}
