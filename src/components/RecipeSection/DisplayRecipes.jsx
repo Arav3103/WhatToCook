@@ -73,16 +73,10 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           handleSelectQuickFilter={handleSelectQuickFilter}
         />
         <span>
-          <Button
-            label={"A-Z"}
-            onClick={(e) => handleSelectSortOrder(e)}
-          />
+          <Button label={"A-Z"} onClick={(e) => handleSelectSortOrder(e)} />
         </span>
         <span>
-          <Button
-            label={"Z-A"}
-            onClick={(e) => handleSelectSortOrder(e)}
-          />
+          <Button label={"Z-A"} onClick={(e) => handleSelectSortOrder(e)} />
         </span>
       </section>
       <ul>
@@ -118,6 +112,7 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
           recipeList={recipeList}
           selectedRecipe={selectedRecipe}
           onClose={() => setShowModal(false)}
+          isOpen={showModal}
         />
       )}
       {showAddRecipeModal && (
