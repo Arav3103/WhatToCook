@@ -135,11 +135,11 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
 };
 
 DisplayRecipes.propTypes = {
-  srcList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  recipeList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 DisplayRecipes.defaultProps = {
-  srcList: [],
+  recipeList: [],
 };
 
 export default DisplayRecipes;

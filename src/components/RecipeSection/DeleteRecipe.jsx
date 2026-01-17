@@ -1,6 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import Button from "../Button";
+import PropTypes from "prop-types";
 
 const DeleteRecipe = ({
   recipeList,
@@ -29,6 +30,13 @@ const DeleteRecipe = ({
     </div>,
     portalRoot
   );
+};
+
+DeleteRecipe.propTypes = {
+  setRecipeList: PropTypes.func.isRequired,
+  recipeList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClose: PropTypes.func.isRequired,
+  selectedRecipe: PropTypes.string.isRequired,
 };
 
 export default DeleteRecipe;

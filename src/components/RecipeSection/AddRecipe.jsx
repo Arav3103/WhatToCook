@@ -3,6 +3,9 @@ import Button from "../Button";
 import AlertPopup from "../AlertPopup";
 import { addRecipe } from "../../database/RecipeStore";
 import { createPortal } from "react-dom";
+import Modal from "../Modal";
+import PropTypes from "prop-types";
+import { recipe } from "../../constants";
 
 const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
   const [showAlert, setShowAlert] = useState(false);
@@ -10,7 +13,6 @@ const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
 
   const handleAddRecipe = (e) => {
     e.preventDefault();
-    // const newRecipe = inputRef.current.value;
     const createdDateTime = new Date(Date.now());
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
@@ -61,7 +63,17 @@ const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
   return createPortal(
     <div className="modal-overlay">
       <div className="modal">
-        <h3>{showAlert && <AlertPopup />}</h3>
+        <h3>
+          {showAlert && (
+            <Modal
+              isOpen={showAlert}
+              onClose={() => setShowAlert(false)}
+              time={recipe.recipeSection.displayTime}
+            >
+              <AlertPopup textContent={recipe.recipeSection.addRecipeMessage} />
+            </Modal>
+          )}
+        </h3>
         <form onSubmit={handleAddRecipe}>
           <h2>Add Recipe</h2>
           <fieldset>
@@ -141,6 +153,12 @@ const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
     </div>,
     portalRoot
   );
+};
+
+AddRecipe.propTypes = {
+  setRecipeList: PropTypes.func.isRequired,
+  recipeList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default AddRecipe;

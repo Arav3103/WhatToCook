@@ -1,6 +1,5 @@
-import React from "react";
 import Button from "../Button";
-// import { quickFilters } from '../../constants';
+import PropTypes from "prop-types";
 
 const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
   const quickFilters = [
@@ -26,6 +25,11 @@ const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
       </div>
     </>
   );
+};
+
+QuickFilters.propTypes = {
+  handleSelectQuickFilter: PropTypes.func.isRequired,
+  recipeList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default QuickFilters;

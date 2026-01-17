@@ -1,11 +1,16 @@
+import PropTypes from "prop-types";
 import React from "react";
 
-const AlertPopup = () => {
+const AlertPopup = ({ textContent }) => {
   return (
     <>
-      <p>Recipe Added Successfully</p>
+      <p>{textContent}</p>
     </>
   );
+};
+
+AlertPopup.propTypes = {
+  textContent: PropTypes.string.isRequired,
 };
 
 export default AlertPopup;

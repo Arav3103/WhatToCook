@@ -1,5 +1,6 @@
 import "./styles.css";
 import Modal from "../Modal";
+import PropTypes from "prop-types";
 
 const ReadRecipe = ({ recipeList, onClose, selectedRecipe, isOpen }) => {
   return (
@@ -20,6 +21,13 @@ const ReadRecipe = ({ recipeList, onClose, selectedRecipe, isOpen }) => {
       </ul>
     </Modal>
   );
+};
+
+ReadRecipe.propTypes = {
+  recipeList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClose: PropTypes.func.isRequired,
+  selectedRecipe: PropTypes.string.isRequired,
+  isOpen: PropTypes.func.isRequired,
 };
 
 export default ReadRecipe;

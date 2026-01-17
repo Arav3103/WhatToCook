@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 
@@ -26,6 +27,12 @@ const Modal = ({ children, onClose, isOpen, time }) => {
     </>,
     portalRoot
   );
+};
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
 };
 
 export default Modal;
