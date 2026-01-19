@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 const DeleteRecipe = ({
   recipeList,
-  setRecipeList,
   selectedRecipe,
   onClose: closeModal,
 }) => {
@@ -15,7 +14,9 @@ const DeleteRecipe = ({
     const updatedList = recipeList.filter(
       (recipe) => recipe.recipeID !== selectedRecipe
     );
-    setRecipeList(updatedList);
+    // setRecipeList(updatedList);
+    console.log(updatedList);
+    
     closeModal();
   };
   return createPortal(
@@ -33,7 +34,7 @@ const DeleteRecipe = ({
 };
 
 DeleteRecipe.propTypes = {
-  setRecipeList: PropTypes.func.isRequired,
+  // setRecipeList: PropTypes.func.isRequired,
   recipeList: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClose: PropTypes.func.isRequired,
   selectedRecipe: PropTypes.string.isRequired,

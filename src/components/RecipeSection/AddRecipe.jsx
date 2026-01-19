@@ -6,8 +6,10 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal";
 import PropTypes from "prop-types";
 import { recipe } from "../../constants";
+import { useDispatch } from "react-redux";
 
-const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
+const AddRecipe = ({  recipeList, onClose }) => {
+  const dispatch = useDispatch();
   const [showAlert, setShowAlert] = useState(false);
   const inputRef = useRef(null);
 
@@ -19,22 +21,33 @@ const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
     console.log(data);
 
     if (!data.recipeName) return;
-    setRecipeList((prevList) => {
-      return prevList.includes(data.recipeName)
-        ? prevList
-        : [
-            ...prevList,
-            {
-              id: recipeList.length + 1,
-              recipeName: data.recipeName,
-              createdDate: createdDateTime.toLocaleDateString(),
-              createdTime: createdDateTime.toLocaleTimeString(),
-              cuisine: data.cuisine,
-              category: data.category,
-              recipeType: data.recipeType,
-            },
-          ];
-    });
+    // setRecipeList((prevList) => {
+    //   return prevList.includes(data.recipeName)
+    //     ? prevList
+    //     : [
+    //         ...prevList,
+    //         {
+    //           id: recipeList.length + 1,
+    //           recipeName: data.recipeName,
+    //           createdDate: createdDateTime.toLocaleDateString(),
+    //           createdTime: createdDateTime.toLocaleTimeString(),
+    //           cuisine: data.cuisine,
+    //           category: data.category,
+    //           recipeType: data.recipeType,
+    //         },
+    //       ];
+    // });
+    const newRecipe = {
+      id: recipeList.length + 1,
+      recipeName: data.recipeName,
+      createdDate: createdDateTime.toLocaleDateString(),
+      createdTime: createdDateTime.toLocaleTimeString(),
+      cuisine: data.cuisine,
+      category: data.category,
+      recipeType: data.recipeType,
+    };
+    dispatch(addRecipe(newRecipe));
+
     setShowAlert(true);
     inputRef.current.value = "";
   };
@@ -151,12 +164,12 @@ const AddRecipe = ({ setRecipeList, recipeList, onClose }) => {
         />
       </div>
     </div>,
-    portalRoot
+    portalRoot,
   );
 };
 
 AddRecipe.propTypes = {
-  setRecipeList: PropTypes.func.isRequired,
+  // setRecipeList: PropTypes.func.isRequired,
   recipeList: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClose: PropTypes.func.isRequired,
 };

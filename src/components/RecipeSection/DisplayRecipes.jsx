@@ -6,7 +6,7 @@ import QuickFilters from "./QuickFilters";
 import AddRecipe from "./AddRecipe";
 import Button from "../Button";
 
-const DisplayRecipes = ({ recipeList, setRecipeList }) => {
+const DisplayRecipes = ({ recipeList }) => {
   const [showModal, setShowModal] = useState(false);
   const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
   const [showDeleteRecipeModal, setDeleteRecipeModal] = useState(false);
@@ -117,7 +117,6 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
       )}
       {showAddRecipeModal && (
         <AddRecipe
-          setRecipeList={setRecipeList}
           recipeList={recipeList}
           onClose={() => setShowAddRecipeModal(false)}
         />
@@ -125,7 +124,6 @@ const DisplayRecipes = ({ recipeList, setRecipeList }) => {
       {showDeleteRecipeModal && (
         <DeleteRecipe
           recipeList={recipeList}
-          setRecipeList={setRecipeList}
           selectedRecipe={selectedRecipe}
           onClose={() => setDeleteRecipeModal(false)}
         />
