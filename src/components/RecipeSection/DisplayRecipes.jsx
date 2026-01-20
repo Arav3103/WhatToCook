@@ -32,10 +32,10 @@ const DisplayRecipes = ({ recipeList }) => {
   let sortedRecipeList =
     sortType === "A-Z"
       ? [...filteredRecipeList].sort((a, b) =>
-          a.recipeName.localeCompare(b.recipeName)
+          a.recipeName.localeCompare(b.recipeName),
         )
       : [...filteredRecipeList].sort((a, b) =>
-          b.recipeName.localeCompare(a.recipeName)
+          b.recipeName.localeCompare(a.recipeName),
         );
 
   const handleSelectSortOrder = (e) => {
@@ -123,7 +123,6 @@ const DisplayRecipes = ({ recipeList }) => {
       )}
       {showDeleteRecipeModal && (
         <DeleteRecipe
-          recipeList={recipeList}
           selectedRecipe={selectedRecipe}
           onClose={() => setDeleteRecipeModal(false)}
         />

@@ -2,21 +2,15 @@ import React from "react";
 import { createPortal } from "react-dom";
 import Button from "../Button";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { deleteRecipe } from "../../store/recipeSlice";
 
-const DeleteRecipe = ({
-  recipeList,
-  selectedRecipe,
-  onClose: closeModal,
-}) => {
+const DeleteRecipe = ({ selectedRecipe, onClose: closeModal }) => {
+  const dispatch = useDispatch();
   const portalRoot = document.getElementById("portal-root");
   if (!portalRoot) return;
   const handleDeleteRecipe = () => {
-    const updatedList = recipeList.filter(
-      (recipe) => recipe.recipeID !== selectedRecipe
-    );
-    // setRecipeList(updatedList);
-    console.log(updatedList);
-    
+    dispatch(deleteRecipe(selectedRecipe));
     closeModal();
   };
   return createPortal(
@@ -29,7 +23,7 @@ const DeleteRecipe = ({
         <Button onClick={closeModal} label={"Close"}></Button>
       </div>
     </div>,
-    portalRoot
+    portalRoot,
   );
 };
 
