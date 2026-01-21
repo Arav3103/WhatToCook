@@ -14,6 +14,9 @@ const DisplayRecipes = ({ recipeList }) => {
   const [quickFilterItem, setQuickFilterItem] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState("");
   const [sortType, setSortType] = useState("A-Z");
+  const selectedRecipeData = recipeList.find(
+    (recipe) => recipe.recipeID === selectedRecipe,
+  );
   const handleSelectQuickFilter = (filterValue) => {
     setQuickFilterItem(filterValue);
   };
@@ -41,6 +44,7 @@ const DisplayRecipes = ({ recipeList }) => {
   const handleSelectSortOrder = (e) => {
     setSortType(e.currentTarget.id);
   };
+
   return (
     <>
       <form>
@@ -107,10 +111,9 @@ const DisplayRecipes = ({ recipeList }) => {
           </li>
         ))}
       </ul>
-      {showModal && selectedRecipe && (
+      {showModal && selectedRecipeData && (
         <ReadRecipe
-          recipeList={recipeList}
-          selectedRecipe={selectedRecipe}
+          recipe={selectedRecipeData}
           onClose={() => setShowModal(false)}
           isOpen={showModal}
         />
