@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from "../Button";
-import AlertPopup from "../AlertPopup";
-import { addRecipe } from "../../database/RecipeStore";
 import { createPortal } from "react-dom";
-import Modal from "../Modal";
 import PropTypes from "prop-types";
-import { recipe } from "../../constants";
 import { useDispatch } from "react-redux";
+import { addRecipe } from "../../../store/recipeSlice";
+import { recipe } from "../../../constants";
+import Button from "../../common/Button";
 
-const AddRecipe = ({  recipeList, onClose }) => {
+const AddRecipe = ({ recipeList, onClose }) => {
   const dispatch = useDispatch();
   const [showAlert, setShowAlert] = useState(false);
   const inputRef = useRef(null);

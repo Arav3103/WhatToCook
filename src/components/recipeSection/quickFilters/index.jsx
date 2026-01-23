@@ -1,10 +1,10 @@
-import Button from "../Button";
 import PropTypes from "prop-types";
+import Button from "../../common/Button";
 
 const QuickFilters = ({ recipeList, handleSelectQuickFilter }) => {
   const quickFilters = [
     ...new Set(
-      recipeList.flatMap((r) => [r.category, r.cuisine, r.recipeType])
+      recipeList.flatMap((r) => [r.category, r.cuisine, r.recipeType]),
     ),
     "All Recipes",
   ];

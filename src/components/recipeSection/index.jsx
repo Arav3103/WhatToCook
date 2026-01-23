@@ -1,12 +1,8 @@
-import React from "react";
-import AddRecipe from "./AddRecipe";
-import DisplayRecipes from "./DisplayRecipes";
-import { DUMMY_RECIPE_DATA } from "../../database/dummyData";
+import DisplayRecipes from "./displayRecipe";
 import { recipe } from "../../constants";
 import { useSelector } from "react-redux";
 
 const RecipeSection = () => {
-  // const [recipeList, setRecipeList] = useState(DUMMY_RECIPE_DATA);
   const recipeList = useSelector((state) => state.recipes.recipeList);
   return (
     <main>
@@ -16,9 +12,7 @@ const RecipeSection = () => {
           {recipeList.length > 0 && (
             <>
               <section id="display-recipe">
-                <DisplayRecipes
-                  recipeList={recipeList}
-                />
+                <DisplayRecipes recipeList={recipeList} />
               </section>
             </>
           )}

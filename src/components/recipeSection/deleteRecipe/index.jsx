@@ -1,9 +1,9 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import Button from "../Button";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { deleteRecipe } from "../../store/recipeSlice";
+import { deleteRecipe } from "../../../store/recipeSlice";
+import Button from "../../common/Button";
 
 const DeleteRecipe = ({ selectedRecipe, onClose: closeModal }) => {
   const dispatch = useDispatch();

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import '../modal/styles.css';
 
 const Modal = ({ children, onClose, isOpen, time }) => {
   const portalRoot = document.getElementById("portal-root");

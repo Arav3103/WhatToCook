@@ -1,5 +1,4 @@
-import "./styles.css";
-import Modal from "../Modal";
+import Modal from "../../common/Modal";
 import PropTypes from "prop-types";
 
 const ReadRecipe = ({ recipe, onClose, isOpen }) => {

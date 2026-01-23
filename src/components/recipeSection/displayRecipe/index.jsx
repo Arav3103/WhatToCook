@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
-import DeleteRecipe from "./DeleteRecipe";
-import ReadRecipe from "./ReadRecipe";
 import { useState } from "react";
-import QuickFilters from "./QuickFilters";
-import AddRecipe from "./AddRecipe";
-import Button from "../Button";
+import QuickFilters from "../quickFilters";
+import AddRecipe from "../AddRecipe";
+import DeleteRecipe from "../deleteRecipe";
+import ReadRecipe from "../readRecipe";
+import Button from "../../common/Button";
 
 const DisplayRecipes = ({ recipeList }) => {
   const [showModal, setShowModal] = useState(false);
